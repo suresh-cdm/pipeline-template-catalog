@@ -2,7 +2,7 @@
 pipeline {
   agent none
   triggers {
-    eventTrigger jmespathQuery("event=='imagePush' && name=='openjdk'")
+    eventTrigger jmespathQuery("event=='imagePush' && name=='maven'")
   }
   options {
    timeout(time: 10, unit: 'MINUTES') 
@@ -11,7 +11,7 @@ pipeline {
     stage('Agent') {
       agent { label 'maven' }
       stages { 
-        stage('OpenJDK Image Push') {
+        stage('Maven Image Push') {
           agent any
           when {
             triggeredBy 'EventTriggerCause' 
