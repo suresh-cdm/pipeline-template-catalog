@@ -18,7 +18,7 @@ pipeline {
           }
           steps {
             getImageBuildEventPayload()
-            echo "new base image: ${env.EVENT_PUSH_IMAGE_NAME}:${env.EVENT_PUSH_IMAGE_TAG}"
+            echo "new build image: ${env.EVENT_PUSH_IMAGE_NAME}:${env.EVENT_PUSH_IMAGE_TAG}"
           }
         }
         stage("Set GitHub Branch Protection") {
