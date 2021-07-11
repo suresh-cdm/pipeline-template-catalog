@@ -1,4 +1,4 @@
-library 'cb-days@master'
+library 'pipeline-library'
 def testPodYaml = libraryResource 'podtemplates/python/python-test-pod.yml'
 pipeline {
   agent none
@@ -16,7 +16,7 @@ pipeline {
     stage('Build and Push Image') {
       when {
         beforeAgent true
-        branch 'master'
+        branch 'main'
       }
       steps {
         containerBuildPushGeneric("${repoOwner}/${repository}", "latest", "${gcpProject}")
@@ -30,7 +30,7 @@ pipeline {
     stage('Deploy') {
       when {
         beforeAgent true
-        branch 'master'
+        branch 'main'
       }
       steps {
         blogBackendKubeDeploy("${repository}", "${repoOwner}", "gcr.io/${gcpProject}", "${deploymentDomain}") {
