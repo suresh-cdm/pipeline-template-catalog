@@ -40,6 +40,9 @@ pipeline {
               branch 'main'
               branch 'pr-*'
             }
+            not {
+              triggeredBy 'EventTriggerCause' 
+            }
           }
           steps {
             customYamlProps()
@@ -72,6 +75,9 @@ pipeline {
               branch 'main'
               branch 'pr-*'
             }
+            not {
+              triggeredBy 'EventTriggerCause' 
+            }
           }
           steps {
              container ('maven') {
@@ -88,6 +94,9 @@ pipeline {
           when {
             beforeAgent true
             branch 'main'
+            not {
+              triggeredBy 'EventTriggerCause' 
+            }
           }
           steps {
             container ('maven') {
