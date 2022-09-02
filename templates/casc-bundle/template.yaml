@@ -16,7 +16,7 @@ parameters:
     type: CREDENTIALS
     defaultValue: cloudbees-ci-workshop-github-app
 multibranch:
-  markerFile: .markerfile
+  markerFile: bundle/bundle.yaml
   branchSource:
     github:
       id: cloudbees-ci-config-bundle
@@ -41,4 +41,10 @@ multibranch:
             - stage:
                 verbosity: "failed"
             - "junit"
+    strategy:
+      allBranchesSame:
+        props:
+        - suppressAutomaticTriggering:
+            triggeredBranchesRegex: .*
+            strategy: INDEXING
 
