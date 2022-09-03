@@ -7,14 +7,15 @@ parameters:
   - name: repoOwner
     type: string
     displayName: GitHub Organization
+    defaultValue: REPLACE_GITHUB_ORG
   - name: repository
     type: string
     displayName: GitHub Repository
-    defaultValue: cloudbees-ci-config-bundle
+    defaultValue: controller
   - name: githubCredentialId
     displayName: GitHub Credential ID
     type: CREDENTIALS
-    defaultValue: cloudbees-ci-workshop-github-app
+    defaultValue: cloudbees-ci-previews-demo-github-app
 multibranch:
   markerFile: bundle/bundle.yaml
   branchSource:
