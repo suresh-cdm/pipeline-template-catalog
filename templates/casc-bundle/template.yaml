@@ -35,15 +35,6 @@ multibranch:
               $class: TrustPermission
         - headWildcardFilter:
             includes: main
-        - cloudBeesSCMReporting:
-            handlers:
-            - endBuildError:
-                maxLogLines: 120
-            - "warningsNG"
-            - "jacoco"
-            - stage:
-                verbosity: "failed"
-            - "junit"
     strategy:
       allBranchesSame:
         props:
