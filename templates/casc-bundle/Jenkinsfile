@@ -7,6 +7,15 @@ pipeline {
     skipDefaultCheckout true
   }
   stages {
+    stage('Validate CasC Bundle') {
+      when {
+        beforeAgent true
+        branch 'PR-*'
+      }
+      steps {
+        echo "TODO"  
+      }
+    }
     stage('Publish CasC Bundle Update Event') {
       agent { label 'default' }
       when {
