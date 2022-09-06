@@ -34,11 +34,4 @@ multibranch:
             trust:
               $class: TrustPermission
         - headWildcardFilter:
-            includes: main
-    strategy:
-      allBranchesSame:
-        props:
-        - suppressAutomaticTriggering:
-            triggeredBranchesRegex: .*
-            strategy: INDEXING
-
+            includes: main PR-*
