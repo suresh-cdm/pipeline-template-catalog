@@ -22,19 +22,21 @@ pipeline {
           cd bundle
           yq -i 'del(.availabilityPattern)' bundle.yaml 
           yq -i 'del(.parent)' bundle.yaml
-          yq -i 'del(.plugins)' bundle.yaml
+          yq -i '.catalog.[0]|= "plugin-catalog.yaml"' bundle.yaml
           yq -i '.items.[0]|= "admin-jobs.yaml"' bundle.yaml
           yq -i '.items += "pipelines.yaml"' bundle.yaml
           yq -i '.jcasc.[0]|= "jenkins.yaml"' bundle.yaml
+          
           yq -i '. *= load("jcasc/credentials.yaml")' jcasc/jenkins.yaml
           yq -i '. *= load("jcasc/pipeline-policies.yaml")' jcasc/jenkins.yaml
           yq -i '. *= load("jcasc/pod-templates.yaml")' jcasc/jenkins.yaml
+
           cp items/admin-jobs/jobs.yaml ./admin-jobs.yaml
           cp items/pipelines/jobs.yaml ./pipelines.yaml
           rm -rf items
           cp jcasc/jenkins.yaml ./jenkins.yaml
           rm -rf jcasc
-          rm -f plugins.yaml
+          curl https://raw.githubusercontent.com/cloudbees-days/workshop-casc-bundles/main/base/plugin-catalog.yaml > plugin-catalog.yaml
           zip -r bundle.zip ./*
           curl --user "$API_TOKEN_USR:$API_TOKEN_PSW" -XPOST \
             -H "Accept: application/json"  \
