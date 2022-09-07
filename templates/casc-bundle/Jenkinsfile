@@ -39,7 +39,8 @@ pipeline {
           curl --user "$API_TOKEN_USR:$API_TOKEN_PSW" -XPOST \
             -H "Accept: application/json"  \
             -H "Content-type: application/zip" --data-binary "@./bundle.zip" \
-            http://cbci-previews-demo-controller/cbci-previews-demo-controller/casc-bundle-mgnt/casc-bundle-validate > validation.json  
+            http://cbci-previews-demo-controller/cbci-previews-demo-controller/casc-bundle-mgnt/casc-bundle-validate > validation.json
+          more validation.json
         '''
         script {
           def valid = sh(script: '''
