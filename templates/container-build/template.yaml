@@ -32,10 +32,4 @@ multibranch:
             strategyId: 1
         - gitHubPullRequestDiscovery:
             strategyId: 1
-    strategy:
-      allBranchesSame:
-        props:
-        - suppressAutomaticTriggering:
-            triggeredBranchesRegex: ^(?!PR-).*$
-            strategy: INDEXING
   markerFile: Dockerfile
