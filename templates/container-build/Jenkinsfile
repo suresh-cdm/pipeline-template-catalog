@@ -23,7 +23,6 @@ pipeline {
         containerBuildPushGeneric(REPO_NAME) {
           checkout scm
           gitShortCommit()
-          stash name: "chart", includes: "chart/**"
         }
       }
     }
