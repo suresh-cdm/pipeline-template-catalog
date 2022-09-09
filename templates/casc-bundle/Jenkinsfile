@@ -12,7 +12,6 @@ pipeline {
         beforeAgent true
         branch 'main'
       }
-      environment { CASC_UPDATE_SECRET = credentials('casc-update-secret') }
       steps {
         gitHubParseOriginUrl()
         publishEvent event:jsonEvent("""
