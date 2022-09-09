@@ -7,17 +7,15 @@ pipeline {
   }
   stages {
     stage('Publish CasC Bundle Update Event') {
-      agent { label 'default' }
       when {
         beforeAgent true
         branch 'main'
       }
       steps {
-        gitHubParseOriginUrl()
         publishEvent event:jsonEvent("""
           {
-            'controller':{'name':'${BUNDLE_ID}','action':'casc_bundle_update','bundle_id':'${BUNDLE_ID}'},
-            'github':{'organization':'${GITHUB_ORG}','repository':'${GITHUB_REPO}'},
+            'controller':{'name':'${CASC_BUNDLE_ID}','action':'casc_bundle_update','bundle_id':'${CASC_BUNDLE_ID}'},
+            'github':{'organization':'${repoOwner}','repository':'${repository}'},
             'secret':'${CASC_UPDATE_SECRET}',
             'casc':{'auto_reload':'false'}
           }
