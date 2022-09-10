@@ -17,15 +17,15 @@ pipeline {
   }
   stages {
     stage('Pull Request') {
+      when {
+        beforeAgent true
+        anyOf {
+          branch 'pr-*'
+          triggeredBy 'EventTriggerCause'
+        }
+      }
       stages {
         stage('Build and Push Container Image') {
-          when {
-            beforeAgent true
-            anyOf {
-              branch 'pr-*'
-              triggeredBy 'EventTriggerCause'
-            }
-          }
           steps {  
             echo "building and pushing container image for ${REPO_OWNER}/${REPO_NAME}"
             containerBuildPushGeneric(REPO_NAME) {
